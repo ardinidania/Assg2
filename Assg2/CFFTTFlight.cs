@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//==========================================================
+// Student Number : S10270562D
+// Student Name : Ardini Dania
+// Partner Name : Gerick Yi
+//==========================================================
+
 namespace Assg2
 {
     class CFFTTFlight : Flight
