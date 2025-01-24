@@ -32,7 +32,7 @@ namespace Assg2
                 "\tDestination: " + Destination +
                 "\tExpectedTime: " + ExpectedTime +
                 "\tStatus: " + Status;
-                // $"Flight: {FlightNumber} | {Origin} -> {Destination} | {ExpectedTime:HH:mm} | {Status}";
+
         }
     }
 }

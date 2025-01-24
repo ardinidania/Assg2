@@ -58,7 +58,16 @@ namespace Assg2
                 Console.WriteLine($"{airline.Name} Fees: {airline.CalculateFees():C}");
             }
         }
-
+        public double CalculateGateFees()
+    {
+        double total = 0;
+        foreach (var gate in BoardingGates.Values)
+        {
+            if (GateFees.ContainsKey(gate.GateName))
+                total += GateFees[gate.GateName];
+        }
+        return total;
+    }
         public override string ToString()
         {
             return "Terminal: " + TerminalName +

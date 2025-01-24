@@ -16,6 +16,10 @@ namespace Assg2
             return 100.0; 
         }
 
-        // tostring
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
     }
 }
