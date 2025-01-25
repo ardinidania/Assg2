@@ -1,4 +1,5 @@
 ﻿using Assg2;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 //==========================================================
 // Student Number : S10270562D
@@ -57,3 +58,81 @@ for (int i = 1; i < flightsLines.Length; i++) // Skip the header line
 }
 int flightCount = flightsLines.Length - 1;
 Console.WriteLine($"{flightCount} Flights Loaded!");
+
+static void DisplayMenu()
+{
+    Console.WriteLine("=============================================\r\nWelcome to Changi Airport Terminal 5\r\n=============================================\r\n1. List All Flights\r\n2. List Boarding Gates\r\n3. Assign a Boarding Gate to a Flight\r\n4. Create Flight\r\n5. Display Airline Flights\r\n6. Modify Flight Details\r\n7. Display Flight Schedule\r\n0. Exit\r\nPlease select your option:");
+
+}
+
+
+// Main program loop
+while (true)
+{
+    DisplayMenu(); 
+    Console.Write("Enter your option: ");
+    string option = Console.ReadLine();
+
+    if (option == "0")
+    {
+        Console.WriteLine("Goodbye!");
+        break;
+    }
+    else if (option == "1")
+    {
+        Console.WriteLine("=============================================\r\nList of Flights for Changi Airport Terminal 5\r\n=============================================");
+        
+    }
+    else if (option == "2")
+    {
+        Console.WriteLine("=============================================\r\nList of Boarding Gates for Changi Airport Terminal 5\r\n=============================================");
+        ListBoardingGates(boardingGates);
+    }
+    else if (option == "3")
+    {
+        Console.WriteLine("Assigning a boarding gate to a flight...");
+        
+    }
+    else if (option == "4")
+    {
+        Console.WriteLine("Creating a new flight...");
+        
+    }
+    else if (option == "5")
+    {
+        Console.WriteLine("=============================================\r\nList of Airlines for Changi Airport Terminal 5\r\n=============================================");
+        
+    }
+    else if (option == "6")
+    {
+        Console.WriteLine("Modifying flight details...");
+        
+    }
+    else if (option == "7")
+    {
+        Console.WriteLine("Displaying flight schedule...");
+        
+    }
+    else
+    {
+        Console.WriteLine("Invalid option, please try again.");
+    }
+
+    Console.WriteLine(); 
+}
+
+static void ListBoardingGates(Dictionary<string, BoardingGate> boardingGates)
+{
+    Console.WriteLine("{0,-12} {1,-8} {2,-8} {3,-8}", "Gate Name", "DDJB", "CFFT", "LWTT");
+    foreach (var gate in boardingGates)
+    {
+        Console.WriteLine("{0,-12} {1,-8} {2,-8} {3,-8}",
+            gate.Value.GateName,
+            gate.Value.SupportsDDJB ? "True" : "False",
+            gate.Value.SupportsCFFT ? "True" : "False",
+            gate.Value.SupportsLWTT ? "True" : "False");
+    }
+}
+
+
+
