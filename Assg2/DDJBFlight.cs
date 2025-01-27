@@ -13,24 +13,25 @@ using System.Threading.Tasks;
 
 namespace Assg2
 {
+
     class DDJBFlight : Flight
     {
-        public double RequestFee { get; set; }
-
-        public DDJBFlight(string flightNumber, string origin, string destination, DateTime expectedTime, double requestFee, string status = "On Time")
-            : base(flightNumber, origin, destination, expectedTime, status)
+        public DDJBFlight(string fn, string ori, string dest, DateTime et)
+            : base(fn, ori, dest, et)
         {
-            RequestFee = requestFee;
         }
 
-        public override double CalculateFees()
-        {
-            return 400.0 + RequestFee;
-        }
 
-        public override string ToString()
+        public double CalculateDDJBFlightFees()
         {
-            return base.ToString() + "Request Fee: " + RequestFee;
+            double fee = 0;
+            if (Origin == "Singapore (SIN)")
+                fee += 800; 
+            if (Destination == "Singapore (SIN)")
+                fee += 500; 
+            fee += 300; 
+            fee += 300; 
+            return fee;
         }
     }
 }

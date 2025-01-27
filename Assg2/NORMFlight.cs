@@ -13,20 +13,23 @@ using System.Threading.Tasks;
 
 namespace Assg2
 {
-    class NORMFlight : Flight
+  
+    class NormalFlight : Flight
     {
-        public NORMFlight(string flightNumber, string origin, string destination, DateTime expectedTime, string status = "On Time")
-            : base(flightNumber, origin, destination, expectedTime, status) { }
-
-        public override double CalculateFees()
+        public NormalFlight(string fn, string ori, string dest, DateTime et)
+            : base(fn, ori, dest, et)
         {
-            return 100.0; 
         }
 
-        public override string ToString()
+        public double CalculateNormalFlightFees()
         {
-            return base.ToString();
+            double fee = 0;
+            if (Origin == "Singapore (SIN)")
+                fee += 800;
+            if (Destination == "Singapore (SIN)")
+                fee += 500; 
+            fee += 300; 
+            return fee;
         }
-
     }
 }

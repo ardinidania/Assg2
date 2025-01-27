@@ -13,15 +13,18 @@ using System.Threading.Tasks;
 
 namespace Assg2
 {
-    abstract class Flight
+    public class Flight
     {
         public string FlightNumber { get; set; }
         public string Origin { get; set; }
         public string Destination { get; set; }
         public DateTime ExpectedTime { get; set; }
         public string Status { get; set; }
+        public string SpecialRequestCode { get; set; }  
+        public string BoardingGate { get; set; }        
 
-        protected Flight(string fn, string ori, string dest, DateTime et, string status = "On Time")
+        // Constructor
+        public Flight(string fn, string ori, string dest, DateTime et, string status = "On Time")
         {
             FlightNumber = fn;
             Origin = ori;
@@ -30,16 +33,17 @@ namespace Assg2
             Status = status;
         }
 
-        public abstract double CalculateFees();
+        // Virtual method for calculating fees, allowing subclasses to override
+        public virtual double CalculateFees()
+        {
+        
+            return 100.0; // Example fee
+        }
 
+        // ToString method for displaying flight information
         public override string ToString()
         {
-            return "Flight: " + FlightNumber +
-                "\tOrigin: " + Origin +
-                "\tDestination: " + Destination +
-                "\tExpectedTime: " + ExpectedTime +
-                "\tStatus: " + Status;
-
+            return $"Flight: {FlightNumber}\tOrigin: {Origin}\tDestination: {Destination}\tExpectedTime: {ExpectedTime}\tStatus: {Status}";
         }
     }
 }
