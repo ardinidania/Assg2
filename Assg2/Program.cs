@@ -4,6 +4,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 //==========================================================
 // Student Number : S10270562D
 // Student Name : Ardini Dania
+// Partner Number: S10266783H
 // Partner Name : Gerick Yi
 //==========================================================
 
@@ -61,7 +62,7 @@ Console.WriteLine($"{flightCount} Flights Loaded!");
 
 static void DisplayMenu()
 {
-    Console.WriteLine("=============================================\r\nWelcome to Changi Airport Terminal 5\r\n=============================================\r\n1. List All Flights\r\n2. List Boarding Gates\r\n3. Assign a Boarding Gate to a Flight\r\n4. Create Flight\r\n5. Display Airline Flights\r\n6. Modify Flight Details\r\n7. Display Flight Schedule\r\n0. Exit\r\nPlease select your option:");
+    Console.WriteLine("==================================================\r\nWelcome to Changi Airport Terminal 5\r\n==================================================\r\n1. List All Flights\r\n2. List Boarding Gates\r\n3. Assign a Boarding Gate to a Flight\r\n4. Create Flight\r\n5. Display Airline Flights\r\n6. Modify Flight Details\r\n7. Display Flight Schedule\r\n0. Exit\r\nPlease select your option:");
 
 }
 
@@ -80,12 +81,13 @@ while (true)
     }
     else if (option == "1")
     {
-        Console.WriteLine("=============================================\r\nList of Flights for Changi Airport Terminal 5\r\n=============================================");
+        Console.WriteLine("==================================================\r\nList of Flights for Changi Airport Terminal 5\r\n==================================================");
+        ListFlightsInformation(flights);
         
     }
     else if (option == "2")
     {
-        Console.WriteLine("=============================================\r\nList of Boarding Gates for Changi Airport Terminal 5\r\n=============================================");
+        Console.WriteLine("==================================================\r\nList of Boarding Gates for Changi Airport Terminal 5\r\n==================================================");
         ListBoardingGates(boardingGates);
     }
     else if (option == "3")
@@ -100,7 +102,7 @@ while (true)
     }
     else if (option == "5")
     {
-        Console.WriteLine("=============================================\r\nList of Airlines for Changi Airport Terminal 5\r\n=============================================");
+        Console.WriteLine("==================================================\r\nList of Airlines for Changi Airport Terminal 5\r\n==================================================");
         
     }
     else if (option == "6")
@@ -120,7 +122,36 @@ while (true)
 
     Console.WriteLine(); 
 }
+static void PopulateFlightsList(string filePath, List<Flight> flights)
+{
+    string[] lines = File.ReadAllLines(filePath);
 
+    for (int i = 1; i < lines.Length; i++)
+    {
+        string[] columns = lines[i].Split(',');
+
+        string flightNumber = columns[0];
+        string origin = columns[1];
+        string destination = columns[2];
+        DateTime expectedTime = DateTime.Parse(columns[3]);
+        string specialRequestCode = columns.Length > 4 ? columns[4] : null;
+    }
+}
+static void ListFlightsInformation(List<Flight> flights)
+{
+    Console.WriteLine("{0,-16} {1,-20} {2,-20} {3,-20} {4,-10}",
+        "Flight Number", "Origin", "Destination", "Expected Time", "Status");
+
+    foreach (var flight in flights)
+    {
+        Console.WriteLine("{0,-16} {1,-20} {2,-20} {3,-20} {4,-10}",
+            flight.FlightNumber,
+            flight.Origin,
+            flight.Destination,
+            flight.ExpectedTime,
+            flight.Status);
+    }
+}
 static void ListBoardingGates(Dictionary<string, BoardingGate> boardingGates)
 {
     Console.WriteLine("{0,-12} {1,-8} {2,-8} {3,-8}", "Gate Name", "DDJB", "CFFT", "LWTT");

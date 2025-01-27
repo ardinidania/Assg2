@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 //==========================================================
 // Student Number : S10270562D
 // Student Name : Ardini Dania
+// Partner Number: S10266783H
 // Partner Name : Gerick Yi
 //==========================================================
 
