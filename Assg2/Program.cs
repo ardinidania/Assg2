@@ -587,7 +587,7 @@ static BoardingGate FindMatchingGate(Flight flight, Dictionary<string, BoardingG
 
 
 
-//Advanced Feature (b)
+//Advanced Feature (b) 
 static bool CheckUnassignedBoardingGates(Dictionary<string, Flight> flights)
 {
     bool allassigned = true;
