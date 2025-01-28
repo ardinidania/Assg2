@@ -23,7 +23,7 @@ namespace Assg2
         public string SpecialRequestCode { get; set; }  
         public string BoardingGate { get; set; }        
 
-        // Constructor
+
         public Flight(string fn, string ori, string dest, DateTime et, string status = "On Time")
         {
             FlightNumber = fn;
@@ -33,14 +33,13 @@ namespace Assg2
             Status = status;
         }
 
-        // Virtual method for calculating fees, allowing subclasses to override
         public virtual double CalculateFees()
         {
         
-            return 100.0; // Example fee
+            return 100.0; 
         }
 
-        // ToString method for displaying flight information
+       
         public override string ToString()
         {
             return $"Flight: {FlightNumber}\tOrigin: {Origin}\tDestination: {Destination}\tExpectedTime: {ExpectedTime}\tStatus: {Status}";
