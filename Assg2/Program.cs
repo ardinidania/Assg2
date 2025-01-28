@@ -9,7 +9,6 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 //==========================================================
 
 Dictionary<string, Airline> airlineDictionary = new Dictionary<string, Airline>();
-
 Dictionary<string, BoardingGate> boardingGates = new Dictionary<string, BoardingGate>();
 Dictionary<string, Flight> flights = new Dictionary<string, Flight>();
 
@@ -438,7 +437,7 @@ static void ModifyFlightDetails(Dictionary<string, Flight> flights, Dictionary<s
     if (flights.ContainsKey(flightNumber))
     {
         Flight selectedFlight = flights[flightNumber];
-        Airline flightAirline = airlines[selectedFlight.FlightNumber.Substring(0, 2)]; // Assuming first two letters of flight number match airline code
+        Airline flightAirline = airlines[selectedFlight.FlightNumber.Substring(0, 2)]; 
 
         Console.WriteLine("What would you like to modify?");
         Console.WriteLine("1. Modify Basic Information");
@@ -484,13 +483,13 @@ static void ModifyFlightDetails(Dictionary<string, Flight> flights, Dictionary<s
       
         Console.WriteLine("Flight updated!");
         Console.WriteLine("Flight Number: " + selectedFlight.FlightNumber);
-        Console.WriteLine("Airline Name: " + flightAirline.Name);  // Display Airline Name
+        Console.WriteLine("Airline Name: " + flightAirline.Name);  
         Console.WriteLine("Origin: " + selectedFlight.Origin);
         Console.WriteLine("Destination: " + selectedFlight.Destination);
         Console.WriteLine("Expected Departure/Arrival Time: " + selectedFlight.ExpectedTime.ToString("dd/MM/yyyy h:mm tt"));
         Console.WriteLine("Status: " + selectedFlight.Status);
-        Console.WriteLine("Special Request Code: " + selectedFlight.SpecialRequestCode);  // Display Special Request Code if set
-        Console.WriteLine("Boarding Gate: " + selectedFlight.BoardingGate);  // Display Boarding Gate if set
+        Console.WriteLine("Special Request Code: " + selectedFlight.SpecialRequestCode);  
+        Console.WriteLine("Boarding Gate: " + selectedFlight.BoardingGate);  
     }
     else
     {
@@ -510,4 +509,7 @@ static void DisplayFlightSchedule(Dictionary<string, Flight> flights)
         Console.WriteLine($"{flight.FlightNumber,-16} {flight.Origin,-20} {flight.Destination,-20} {flight.ExpectedTime,-20} {flight.Status}");
     }
 }
+
+
+
 
