@@ -58,6 +58,15 @@ while (true)
     {
         DisplayFlightSchedule(flights);
     }
+    else if (option == "8")
+    {
+
+    }
+    else if (option == "9")
+    {
+        CheckUnassignedBoardingGates(flights);
+        DisplayTotalFee(flights,airlineDictionary);
+    }
     else
     {
         Console.WriteLine("Invalid option, please try again.");
@@ -70,7 +79,7 @@ while (true)
     static void DisplayMenu()
 {
     Console.WriteLine("");
-    Console.WriteLine("==================================================\r\nWelcome to Changi Airport Terminal 5\r\n==================================================\r\n1. List All Flights\r\n2. List Boarding Gates\r\n3. Assign a Boarding Gate to a Flight\r\n4. Create Flight\r\n5. Display Airline Flights\r\n6. Modify Flight Details\r\n7. Display Flight Schedule\r\n0. Exit\r\nPlease select your option:");
+    Console.WriteLine("==================================================\r\nWelcome to Changi Airport Terminal 5\r\n==================================================\r\n1. List All Flights\r\n2. List Boarding Gates\r\n3. Assign a Boarding Gate to a Flight\r\n4. Create Flight\r\n5. Display Airline Flights\r\n6. Modify Flight Details\r\n7. Display Flight Schedule\r\n8. \r\n9. Display Total Fee\r\n0. Exit\r\nPlease select your option:");
 }
 
 static void LoadAirlines(Dictionary<string, Airline> airlines)
@@ -510,6 +519,63 @@ static void DisplayFlightSchedule(Dictionary<string, Flight> flights)
     }
 }
 
+//Advanced Feature (b)
+static bool CheckUnassignedBoardingGates(Dictionary<string, Flight> flights)
+{
+    bool allassigned = true;
+    Console.WriteLine("Checking if all Flights have been assigned Boarding Gates...");
+    foreach (var flight in flights)
+    {
+        if (string.IsNullOrEmpty(flight.Value.BoardingGate))
+        {
+            allassigned = false;
+            Console.WriteLine($"Flight {flight.Key} ({flight.Value.Origin} to {flight.Value.Destination}) does not have a Boarding Gate assigned.");
+        }
+    }
+    if (allassigned)
+    {
+        Console.WriteLine("All flights have a assigned Boarding Gates.");
+    }
+    else
+    {
+        Console.WriteLine("Not all flights have a boarding gate, please ensure that all flights have a assigned gate before trying again.");
+    }
+    return allassigned;
+}
+static void DisplayTotalFee(Dictionary<string, Flight> flights, Dictionary<string, Airline> airlines)
+{
+    /*if (!CheckUnassignedBoardingGates(flights))
+    {
+        return;
+    }*/
 
+    Console.WriteLine("==================================================");
+    Console.WriteLine("Total Fees per Airline");
+    Console.WriteLine("==================================================");
 
+    Dictionary<string, double> AirlineFees = new Dictionary<string, double>();
+    Dictionary<string, double> AirlineDiscounts = new Dictionary<string, double>();
+    Dictionary<string, int> AirlineFlightCounts = new Dictionary<string, int>();
+
+    double TotalFees = 0;
+    double TotalDiscounts = 0;
+
+    foreach (var flight in flights.Values)
+    {
+        double OriginalFee = 300;
+        double ExtraFee = 0;
+        double Discount = 0;
+
+        if (flight.Origin == "Singapore (SIN)")
+        {
+            ExtraFee = 800;
+        }
+        else if (flight.Destination == "Singapore (SIN)")
+        {
+            ExtraFee = 500;
+        }
+        else
+        {
+            ExtraFee = 0;
+        }
 
