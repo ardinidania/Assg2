@@ -646,6 +646,44 @@ static void DisplayTotalFee(Dictionary<string, Flight> flights, Dictionary<strin
         {
             ExtraFee = 0;
         }
-
+        double SubTotalFee = OriginalFee + ExtraFee;
+        string AirlineName = airlines.ContainsKey(flight.FlightNumber) ? airlines[flight.FlightNumber].Name : "Unknown Airline";
+        if (!AirlineFees.ContainsKey(AirlineName))
+        {
+            AirlineFees[AirlineName] = 0;
+            AirlineDiscounts[AirlineName] = 0;
+            AirlineFlightCounts[AirlineName] = 0;
+        }
+        AirlineFees[AirlineName] += SubTotalFee;
+        AirlineFlightCounts[AirlineName]++;
+        // Discounts
+        if (AirlineFlightCounts[AirlineName] % 3 == 0)
+        {
+            Discount += 350;
+        }
+        DateTime departureTime = flight.ExpectedTime;
+        if (departureTime.Hour < 11 || departureTime.Hour >= 21)
+        {
+            Discount += 110;
+        }
+        if (flight.Origin == "Dubai (DXB)" || flight.Origin == "Bangkok (BKK)" || flight.Origin == "Tokyo (NRT)")
+        {
+            Discount += 25;
+        }
+        if (string.IsNullOrEmpty(flight.SpecialRequestCode))
+        {
+            Discount += 50;
+        }
+        AirlineDiscounts[AirlineName] += Discount;
+        TotalFees += SubTotalFee;
+        TotalDiscounts += Discount;
     }
+    double FinalTotalFeesCollected = TotalFees - TotalDiscounts;
+    double DiscountPercentage = (TotalDiscounts / TotalFees) * 100;
+    Console.WriteLine("SUMMARY OF TERMINAL 5 FEES COLLECTION");
+    Console.WriteLine("==================================================");
+    Console.WriteLine($"Total Subtotal Fees from All Airlines: {TotalFees:C}");
+    Console.WriteLine($"Total Discounts Applied: {TotalDiscounts:C}");
+    Console.WriteLine($"Final Total Fees Collected by Terminal 5: {FinalTotalFeesCollected:C}");
+    Console.WriteLine($"Percentage of Discounts Over Total Fees: {DiscountPercentage:F2}%");
 }
